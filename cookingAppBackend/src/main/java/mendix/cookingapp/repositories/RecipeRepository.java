@@ -11,5 +11,8 @@ import org.springframework.stereotype.Repository;
 public interface RecipeRepository extends JpaRepository<RecipeDAO, String> {
 
     @Query("select recipe from RecipeDAO recipe where recipe.name like %:recipeName%")
+    RecipeDAO findRecipeContainingName(@Param("recipeName") String recipeName);
+
+    @Query("select recipe from RecipeDAO recipe where recipe.name=:recipeName")
     RecipeDAO findRecipeByName(@Param("recipeName") String recipeName);
 }

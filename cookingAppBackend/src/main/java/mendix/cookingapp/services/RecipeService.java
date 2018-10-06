@@ -11,6 +11,10 @@ public interface RecipeService {
 
     RecipeDTO getRecipeByName(String recipeName) throws RecipeNotFoundException;
 
-    RecipeDTO addRecipe(RecipeDTO recipeDTO);
+    RecipeDTO addRecipe(RecipeDTO newRecipe) throws RecipeNotFoundException;
+
+    RecipeDTO updateRecipe(RecipeDTO updateRecipe) throws RecipeNotFoundException;
+
+    void deleteRecipe(String recipeName) throws RecipeNotFoundException;
 }
 
