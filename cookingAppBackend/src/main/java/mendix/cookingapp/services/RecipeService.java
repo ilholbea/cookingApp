@@ -1,24 +1,16 @@
 package mendix.cookingapp.services;
 
-import mendix.cookingapp.entities.Recipe;
-import mendix.cookingapp.repositories.RecipeRepository;
-import org.springframework.stereotype.Service;
+import mendix.cookingapp.entities.RecipeDTO;
+import mendix.cookingapp.exceptions.RecipeNotFoundException;
 
 import java.util.List;
 
-@Service
-public class RecipeService {
+public interface RecipeService {
 
-    RecipeRepository recipeRepository;
+    List<RecipeDTO> getAllRecipes() throws RecipeNotFoundException;
 
-    RecipeService(RecipeRepository recipeRepository) {
-        this.recipeRepository = recipeRepository;
-    }
+    RecipeDTO getRecipeByName(String recipeName) throws RecipeNotFoundException;
 
-
-    public List<Recipe> getAllRecipes() {
-        return recipeRepository.findAll();
-    }
-
-
+    RecipeDTO addRecipe(RecipeDTO recipeDTO);
 }
+

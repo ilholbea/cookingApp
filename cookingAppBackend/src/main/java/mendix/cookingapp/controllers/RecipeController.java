@@ -1,27 +1,52 @@
 package mendix.cookingapp.controllers;
 
-import mendix.cookingapp.entities.Recipe;
-import mendix.cookingapp.services.RecipeService;
+import mendix.cookingapp.entities.RecipeDTO;
+import mendix.cookingapp.exceptions.RecipeNotFoundException;
+import mendix.cookingapp.services.RecipeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/recipes")
+@RequestMapping("/api")
 public class RecipeController {
 
-    final RecipeService recipeService;
+    final private RecipeServiceImpl recipeService;
 
     @Autowired
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController(RecipeServiceImpl recipeService) {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("/getAll")
-    public List<Recipe> getAllRecipes() {
-        return recipeService.getAllRecipes();
+    @GetMapping("/recipes")
+    public ResponseEntity getAllRecipes() {
+        try {
+            return new ResponseEntity<>(recipeService.getAllRecipes(), HttpStatus.OK);
+        } catch (RecipeNotFoundException exception) {
+            return new ResponseEntity<>(exception, HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+
+    @GetMapping("/recipes/{name}")
+    public ResponseEntity getRecipeByName(@PathVariable("name") String recipeName) {
+        try {
+            return new ResponseEntity<>(recipeService.getRecipeByName(recipeName), HttpStatus.OK);
+        } catch (RecipeNotFoundException exception) {
+            return new ResponseEntity<>(exception, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/recipes")
+    public ResponseEntity addRecipe(@RequestBody RecipeDTO recipe) {
+        RecipeDTO createdRecipe;
+        try {
+            createdRecipe = recipeService.addRecipe(recipe);
+        } catch (Exception exception) {
+            return new ResponseEntity(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 }
