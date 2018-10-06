@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/")
 public class RecipeController {
 
-    final private RecipeService recipeService;
+    private final RecipeService recipeService;
 
     @Autowired
     public RecipeController(RecipeService recipeService) {
@@ -68,8 +68,7 @@ public class RecipeController {
     @DeleteMapping("recipes/{name}")
     public ResponseEntity deleteRecipe(@PathVariable("name") String recipeName) {
         try {
-            recipeService.deleteRecipe(recipeName);
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity(recipeService.deleteRecipe(recipeName), HttpStatus.OK);
         } catch (RecipeNotFoundException exception) {
             return new ResponseEntity<>(exception, HttpStatus.NOT_FOUND);
         } catch (Exception exception) {

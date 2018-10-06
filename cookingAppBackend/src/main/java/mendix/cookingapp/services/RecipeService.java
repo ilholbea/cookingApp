@@ -1,20 +1,19 @@
 package mendix.cookingapp.services;
 
 import mendix.cookingapp.entities.RecipeDTO;
-import mendix.cookingapp.exceptions.RecipeNotFoundException;
 
 import java.util.List;
 
 public interface RecipeService {
 
-    List<RecipeDTO> getAllRecipes() throws RecipeNotFoundException;
+    List<RecipeDTO> getAllRecipes();
 
-    RecipeDTO getRecipeByName(String recipeName) throws RecipeNotFoundException;
+    RecipeDTO getRecipeByName(String recipeName);
 
-    RecipeDTO addRecipe(RecipeDTO newRecipe) throws RecipeNotFoundException;
+    boolean addRecipe(RecipeDTO newRecipe);
 
-    RecipeDTO updateRecipe(RecipeDTO updateRecipe) throws RecipeNotFoundException;
+    boolean updateRecipe(RecipeDTO updateRecipe);
 
-    void deleteRecipe(String recipeName) throws RecipeNotFoundException;
+    boolean deleteRecipe(String recipeName);
 }
 

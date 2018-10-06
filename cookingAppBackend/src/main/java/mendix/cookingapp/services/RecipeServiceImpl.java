@@ -14,16 +14,17 @@ import java.util.List;
 public class RecipeServiceImpl implements RecipeService {
 
     private RecipeRepository recipeRepository;
+    private static final String NOT_FOUND_MESSAGE = "A recipe with that name has not been found.";
 
     RecipeServiceImpl(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
 
-    public List<RecipeDTO> getAllRecipes() throws RecipeNotFoundException {
+    public List<RecipeDTO> getAllRecipes() {
         List<RecipeDAO> dbRecipeList = recipeRepository.findAll();
         List<RecipeDTO> recipeList = new ArrayList<>();
 
-        if (dbRecipeList == null || dbRecipeList.size() == 0) {
+        if (dbRecipeList == null || dbRecipeList.isEmpty()) {
             throw new RecipeNotFoundException("No recipes have been found.");
         }
         for (RecipeDAO item : dbRecipeList) {
@@ -32,33 +33,35 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeList;
     }
 
-    public RecipeDTO getRecipeByName(String recipeName) throws RecipeNotFoundException {
+    public RecipeDTO getRecipeByName(String recipeName) {
         RecipeDAO dbRecipe = recipeRepository.findRecipeContainingName(recipeName);
         if (dbRecipe == null)
-            throw new RecipeNotFoundException("A recipe with that name has not been found.");
+            throw new RecipeNotFoundException(NOT_FOUND_MESSAGE);
         return new RecipeDTO(dbRecipe);
     }
 
-    public RecipeDTO addRecipe(RecipeDTO newRecipe) throws RecipeNotFoundException {
+    public boolean addRecipe(RecipeDTO newRecipe) {
         if (recipeRepository.findRecipeByName(newRecipe.getName()) == null) {
-            RecipeDAO dbRecipe = recipeRepository.saveAndFlush(new RecipeDAO(newRecipe));
-            return new RecipeDTO(dbRecipe);
+            recipeRepository.saveAndFlush(new RecipeDAO(newRecipe));
+            return true;
         } else throw new RecipeNotFoundException("Recipe already exists.");
     }
 
-    public RecipeDTO updateRecipe(RecipeDTO updateRecipe) throws RecipeNotFoundException {
+    public boolean updateRecipe(RecipeDTO updateRecipe) {
         RecipeDAO dbRecipe = recipeRepository.findRecipeByName(updateRecipe.getName());
         if (dbRecipe != null) {
             BeanUtils.copyProperties(new RecipeDAO(updateRecipe), dbRecipe);
             dbRecipe.setName(updateRecipe.getName());
-            return new RecipeDTO(recipeRepository.saveAndFlush(new RecipeDAO(updateRecipe)));
-        } else throw new RecipeNotFoundException("A recipe with that name has not been found.");
+            recipeRepository.saveAndFlush(new RecipeDAO(updateRecipe));
+            return true;
+        } else throw new RecipeNotFoundException(NOT_FOUND_MESSAGE);
     }
 
-    public void deleteRecipe(String recipeName) throws RecipeNotFoundException {
+    public boolean deleteRecipe(String recipeName) {
         RecipeDAO dbRecipe = recipeRepository.findRecipeByName(recipeName);
         if (dbRecipe != null) {
             recipeRepository.delete(dbRecipe);
-        } else throw new RecipeNotFoundException("A recipe with that name has not been found.");
+            return true;
+        } else throw new RecipeNotFoundException(NOT_FOUND_MESSAGE);
     }
 }
