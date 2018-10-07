@@ -15,14 +15,14 @@ import com.mendix.systemwideinterfaces.core.IMendixObject;
 public class Microflows
 {
 	// These are the microflows for the MyFirstModule module
-	public static myfirstmodule.proxies.RecipeDetails getRecipeByName(IContext context, myfirstmodule.proxies.Recipe _recipe)
+	public static myfirstmodule.proxies.Recipe getRecipeByName(IContext context, myfirstmodule.proxies.Recipe _recipe)
 	{
 		try
 		{
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
 			params.put("Recipe", _recipe == null ? null : _recipe.getMendixObject());
 			IMendixObject result = (IMendixObject)Core.execute(context, "MyFirstModule.GetRecipeByName", params);
-			return result == null ? null : myfirstmodule.proxies.RecipeDetails.initialize(context, result);
+			return result == null ? null : myfirstmodule.proxies.Recipe.initialize(context, result);
 		}
 		catch (CoreException e)
 		{
@@ -49,13 +49,13 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-	public static void updateRecipe(IContext context, myfirstmodule.proxies.RecipeDetails _recipeDetails)
+	public static java.lang.String updateRecipe(IContext context, myfirstmodule.proxies.Recipe _recipe)
 	{
 		try
 		{
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
-			params.put("RecipeDetails", _recipeDetails == null ? null : _recipeDetails.getMendixObject());
-			Core.execute(context, "MyFirstModule.UpdateRecipe", params);
+			params.put("Recipe", _recipe == null ? null : _recipe.getMendixObject());
+			return (java.lang.String)Core.execute(context, "MyFirstModule.UpdateRecipe", params);
 		}
 		catch (CoreException e)
 		{
