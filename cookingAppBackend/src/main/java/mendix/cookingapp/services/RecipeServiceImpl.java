@@ -33,6 +33,20 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeList;
     }
 
+
+    public List<RecipeDTO> getAllRecipesByCategory(String category) {
+        List<RecipeDAO> dbRecipeList = recipeRepository.findRecipeByCategory(category);
+        List<RecipeDTO> recipeList = new ArrayList<>();
+
+        if (dbRecipeList == null || dbRecipeList.isEmpty()) {
+            throw new RecipeNotFoundException("No recipes have been found.");
+        }
+        for (RecipeDAO item : dbRecipeList) {
+            recipeList.add(new RecipeDTO(item));
+        }
+        return recipeList;
+    }
+
     public RecipeDTO getRecipeByName(String recipeName) {
         RecipeDAO dbRecipe = recipeRepository.findRecipeContainingName(recipeName);
         if (dbRecipe == null)

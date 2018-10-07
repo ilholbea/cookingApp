@@ -31,7 +31,7 @@ public class RecipeRepositoryTest {
 
     @Test
     public void findAll() {
-        RecipeDAO firstRecipe = new RecipeDAO("Recipe1", "Description1", "Ingredient1", "Category1");
+        RecipeDAO firstRecipe = new RecipeDAO("Recipe1", "Description1", "Ingredient1", "Category1","steps");
         entityManager.persist(firstRecipe);
         entityManager.flush();
         List<RecipeDAO> recipeList = recipeRepository.findAll();
@@ -40,15 +40,23 @@ public class RecipeRepositoryTest {
 
     @Test
     public void findRecipeByName() {
-        RecipeDAO firstRecipe = new RecipeDAO("Recipe1", "Description1", "Ingredient1", "Category1");
+        RecipeDAO firstRecipe = new RecipeDAO("Recipe1", "Description1", "Ingredient1", "Category1","steps");
         entityManager.persist(firstRecipe);
         entityManager.flush();
         assertThat(recipeRepository.findRecipeByName("Recipe1")).isNotNull();
     }
 
     @Test
+    public void findRecipesByName() {
+        RecipeDAO firstRecipe = new RecipeDAO("Recipe1", "Description1", "Ingredient1", "Salad","steps");
+        entityManager.persist(firstRecipe);
+        entityManager.flush();
+        assertThat(recipeRepository.findRecipeByCategory("Recipe1")).isNotNull();
+    }
+
+    @Test
     public void containsRecipeName() {
-        RecipeDAO firstRecipe = new RecipeDAO("Recipe1", "Description1", "Ingredient1", "Category1");
+        RecipeDAO firstRecipe = new RecipeDAO("Recipe1", "Description1", "Ingredient1", "Category1","steps");
         entityManager.persist(firstRecipe);
         entityManager.flush();
         assertThat(recipeRepository.findRecipeContainingName("1")).isNotNull();

@@ -35,6 +35,19 @@ public class RecipeController {
 
     }
 
+    @GetMapping("recipes/category/{category}")
+    public ResponseEntity getAllRecipesByCategory(@PathVariable("category") String category) {
+        LOGGER.info("GET: get all recipes by category");
+        try {
+            return new ResponseEntity<>(recipeService.getAllRecipesByCategory(category), HttpStatus.OK);
+        } catch (RecipeNotFoundException exception) {
+            return new ResponseEntity<>(exception, HttpStatus.BAD_REQUEST);
+        } catch (Exception exception) {
+            return new ResponseEntity(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
     @GetMapping("recipes/{name}")
     public ResponseEntity getRecipeByName(@PathVariable("name") String recipeName) {
         LOGGER.info("GET: get recipes by name");

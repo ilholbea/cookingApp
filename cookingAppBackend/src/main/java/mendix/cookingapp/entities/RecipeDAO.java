@@ -22,21 +22,34 @@ public class RecipeDAO {
     @Column(name = "categories")
     private String categories;
 
+    @Column(name = "steps")
+    private String steps;
+
     public RecipeDAO() {
     }
 
-    public RecipeDAO(String name, String description, String ingredients, String categories) {
+    public RecipeDAO(String name, String description, String ingredients, String categories, String steps) {
         this.name = name;
         this.description = description;
         this.ingredients = ingredients;
         this.categories = categories;
+        this.steps = steps;
     }
 
     public RecipeDAO(RecipeDTO recipeDTO) {
         this.name = recipeDTO.getName();
         this.description = recipeDTO.getDescription();
-        this.ingredients = String.join(",", recipeDTO.getIngredients());
-        this.categories = String.join(",", recipeDTO.getCategories());
+        this.ingredients = recipeDTO.getIngredients();
+        this.categories = recipeDTO.getCategories();
+        this.steps =  recipeDTO.getSteps();
+    }
+
+    public String getSteps() {
+        return steps;
+    }
+
+    public void setSteps(String steps) {
+        this.steps = steps;
     }
 
     public String getCategories() {
@@ -78,6 +91,7 @@ public class RecipeDAO {
                 ", description='" + description + '\'' +
                 ", ingredients='" + ingredients + '\'' +
                 ", categories='" + categories + '\'' +
+                ", steps='" + steps + '\'' +
                 '}';
     }
 }

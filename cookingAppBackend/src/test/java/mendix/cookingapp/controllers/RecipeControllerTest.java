@@ -42,7 +42,7 @@ public class RecipeControllerTest {
     @Test
     public void getAllRecipes() throws Exception {
 
-        given(recipeServiceMock.getAllRecipes()).willReturn(Arrays.asList(new RecipeDTO("Recipe1", "Description1", "ingredient", "category")));
+        given(recipeServiceMock.getAllRecipes()).willReturn(Arrays.asList(new RecipeDTO("Recipe1", "Description1", "ingredient", "category","steps1=")));
 
         mvc.perform(get("/api/recipes")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -51,10 +51,25 @@ public class RecipeControllerTest {
                 .andExpect(jsonPath("$[0].name", is("Recipe1")));
     }
 
+    @Test
+    public void getAllRecipesByCategory() throws Exception {
+
+        given(recipeServiceMock.getAllRecipesByCategory("gory")).willReturn(Arrays.asList(new RecipeDTO("Recipe1", "Description1", "ingredient", "category","steps1=")));
+
+        mvc.perform(get("/api/recipes/category/gory")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].name", is("Recipe1")))
+                .andExpect(jsonPath("$[0].categories",is("category")));
+    }
+
+
+
 
     @Test
     public void getRecipeByName() throws Exception {
-        given(recipeServiceMock.getRecipeByName("Recipe1")).willReturn(new RecipeDTO("Recipe1", "Description1", "ingredient", "category"));
+        given(recipeServiceMock.getRecipeByName("Recipe1")).willReturn(new RecipeDTO("Recipe1", "Description1", "ingredient", "category","steps"));
         mvc.perform(get("/api/recipes/Recipe1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -64,7 +79,7 @@ public class RecipeControllerTest {
 
     @Test
     public void addRecipe() throws Exception {
-        RecipeDTO newRecipe = new RecipeDTO("Recipe1", "Description1", "ingredient", "category");
+        RecipeDTO newRecipe = new RecipeDTO("Recipe1", "Description1", "ingredient", "category","steps");
         given(recipeServiceMock.addRecipe(newRecipe)).willReturn(true);
         mvc.perform(post("/api/recipes/")
                 .content(objectMapper.writeValueAsBytes(newRecipe))
@@ -74,7 +89,7 @@ public class RecipeControllerTest {
 
     @Test
     public void updateRecipe() throws Exception {
-        RecipeDTO updatedRecipe = new RecipeDTO("Recipe1", "Description1", "ingredient", "category");
+        RecipeDTO updatedRecipe = new RecipeDTO("Recipe1", "Description1", "ingredient", "category","steps");
         given(recipeServiceMock.updateRecipe(updatedRecipe)).willReturn(true);
         mvc.perform(put("/api/recipes/")
                 .content(objectMapper.writeValueAsBytes(updatedRecipe))

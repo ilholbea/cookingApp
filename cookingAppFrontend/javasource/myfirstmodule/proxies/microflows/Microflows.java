@@ -41,13 +41,13 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-	public static void deleteRecipe(IContext context, myfirstmodule.proxies.Recipe _recipe)
+	public static java.lang.String deleteRecipe(IContext context, myfirstmodule.proxies.Recipe _recipe)
 	{
 		try
 		{
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
 			params.put("Recipe", _recipe == null ? null : _recipe.getMendixObject());
-			Core.execute(context, "MyFirstModule.DeleteRecipe", params);
+			return (java.lang.String)Core.execute(context, "MyFirstModule.DeleteRecipe", params);
 		}
 		catch (CoreException e)
 		{

@@ -10,14 +10,17 @@ public class RecipeDTO {
 
     private String categories;
 
+    private String steps;
+
     public RecipeDTO() {
     }
 
-    public RecipeDTO(String name, String description, String ingredients, String categories) {
+    public RecipeDTO(String name, String description, String ingredients, String categories, String steps) {
         this.name = name;
         this.description = description;
         this.ingredients = ingredients;
         this.categories = categories;
+        this.steps = steps;
     }
 
     public RecipeDTO(RecipeDAO recipeDAO) {
@@ -25,6 +28,15 @@ public class RecipeDTO {
         this.description = recipeDAO.getDescription();
         this.ingredients = recipeDAO.getIngredients();
         this.categories = recipeDAO.getCategories();
+        this.steps = recipeDAO.getSteps();
+    }
+
+    public String getSteps() {
+        return steps;
+    }
+
+    public void setSteps(String steps) {
+        this.steps = steps;
     }
 
     public String getCategories() {
@@ -64,8 +76,9 @@ public class RecipeDTO {
         return "RecipeDTO{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", ingredients=" + ingredients +
-                ", categories=" + categories +
+                ", ingredients='" + ingredients + '\'' +
+                ", categories='" + categories + '\'' +
+                ", steps='" + steps + '\'' +
                 '}';
     }
 }

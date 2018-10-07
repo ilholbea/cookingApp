@@ -8,6 +8,8 @@ public interface RecipeService {
 
     List<RecipeDTO> getAllRecipes();
 
+    List<RecipeDTO> getAllRecipesByCategory(String category);
+
     RecipeDTO getRecipeByName(String recipeName);
 
     boolean addRecipe(RecipeDTO newRecipe);

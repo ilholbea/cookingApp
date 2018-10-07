@@ -24,6 +24,7 @@ public class Recipe
 		Description("Description"),
 		Ingredients("Ingredients"),
 		Categories("Categories"),
+		Steps("Steps"),
 		Contains("MyFirstModule.Contains");
 
 		private java.lang.String metaName;
@@ -78,6 +79,14 @@ public class Recipe
 	{
 		com.mendix.systemwideinterfaces.core.IMendixObject mendixObject = com.mendix.core.Core.retrieveId(context, mendixIdentifier);
 		return myfirstmodule.proxies.Recipe.initialize(context, mendixObject);
+	}
+
+	public static java.util.List<myfirstmodule.proxies.Recipe> load(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String xpathConstraint) throws com.mendix.core.CoreException
+	{
+		java.util.List<myfirstmodule.proxies.Recipe> result = new java.util.ArrayList<myfirstmodule.proxies.Recipe>();
+		for (com.mendix.systemwideinterfaces.core.IMendixObject obj : com.mendix.core.Core.retrieveXPathQuery(context, "//MyFirstModule.Recipe" + xpathConstraint))
+			result.add(myfirstmodule.proxies.Recipe.initialize(context, obj));
+		return result;
 	}
 
 	/**
@@ -253,6 +262,42 @@ public class Recipe
 	public final void setCategories(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String categories)
 	{
 		getMendixObject().setValue(context, MemberNames.Categories.toString(), categories);
+	}
+
+	/**
+	 * @return value of Steps
+	 */
+	public final java.lang.String getSteps()
+	{
+		return getSteps(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of Steps
+	 */
+	public final java.lang.String getSteps(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Steps.toString());
+	}
+
+	/**
+	 * Set value of Steps
+	 * @param steps
+	 */
+	public final void setSteps(java.lang.String steps)
+	{
+		setSteps(getContext(), steps);
+	}
+
+	/**
+	 * Set value of Steps
+	 * @param context
+	 * @param steps
+	 */
+	public final void setSteps(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String steps)
+	{
+		getMendixObject().setValue(context, MemberNames.Steps.toString(), steps);
 	}
 
 	/**

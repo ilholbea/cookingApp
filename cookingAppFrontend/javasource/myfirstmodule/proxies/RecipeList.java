@@ -55,6 +55,14 @@ public class RecipeList
 		return myfirstmodule.proxies.RecipeList.initialize(context, mendixObject);
 	}
 
+	public static java.util.List<myfirstmodule.proxies.RecipeList> load(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String xpathConstraint) throws com.mendix.core.CoreException
+	{
+		java.util.List<myfirstmodule.proxies.RecipeList> result = new java.util.ArrayList<myfirstmodule.proxies.RecipeList>();
+		for (com.mendix.systemwideinterfaces.core.IMendixObject obj : com.mendix.core.Core.retrieveXPathQuery(context, "//MyFirstModule.RecipeList" + xpathConstraint))
+			result.add(myfirstmodule.proxies.RecipeList.initialize(context, obj));
+		return result;
+	}
+
 	/**
 	 * Commit the changes made on this proxy object.
 	 */
