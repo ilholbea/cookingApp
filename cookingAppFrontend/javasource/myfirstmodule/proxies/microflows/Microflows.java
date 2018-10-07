@@ -54,6 +54,40 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
+	public static myfirstmodule.proxies.Recipe emptySearch(IContext context)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			IMendixObject result = (IMendixObject)Core.execute(context, "MyFirstModule.EmptySearch", params);
+			return result == null ? null : myfirstmodule.proxies.Recipe.initialize(context, result);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static java.util.List<myfirstmodule.proxies.Recipe> getRecipeByCategory(IContext context, myfirstmodule.proxies.Recipe _recipe)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			params.put("Recipe", _recipe == null ? null : _recipe.getMendixObject());
+			java.util.List<IMendixObject> objs = Core.execute(context, "MyFirstModule.GetRecipeByCategory", params);
+			java.util.List<myfirstmodule.proxies.Recipe> result = null;
+			if (objs != null)
+			{
+				result = new java.util.ArrayList<myfirstmodule.proxies.Recipe>();
+				for (IMendixObject obj : objs)
+					result.add(myfirstmodule.proxies.Recipe.initialize(context, obj));
+			}
+			return result;
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
 	public static myfirstmodule.proxies.Recipe getRecipeByName(IContext context, myfirstmodule.proxies.Recipe _recipe)
 	{
 		try
