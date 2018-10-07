@@ -1,0 +1,9 @@
+﻿Buildfile: C:\Work\cookingApp\cookingAppFrontend\deployment\build_core.xml
+
+deploy:
+     [copy] Copying 45 files to C:\Work\cookingApp\cookingAppFrontend\deployment
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+

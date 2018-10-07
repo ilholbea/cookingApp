@@ -1,0 +1,8 @@
+C:\Work\cookingApp\cookingAppBackend\src\main\java\mendix\cookingapp\CookingappApplication.java
+C:\Work\cookingApp\cookingAppBackend\src\main\java\mendix\cookingapp\entities\RecipeDTO.java
+C:\Work\cookingApp\cookingAppBackend\src\main\java\mendix\cookingapp\repositories\RecipeRepository.java
+C:\Work\cookingApp\cookingAppBackend\src\main\java\mendix\cookingapp\services\RecipeService.java
+C:\Work\cookingApp\cookingAppBackend\src\main\java\mendix\cookingapp\entities\RecipeDAO.java
+C:\Work\cookingApp\cookingAppBackend\src\main\java\mendix\cookingapp\controllers\RecipeController.java
+C:\Work\cookingApp\cookingAppBackend\src\main\java\mendix\cookingapp\exceptions\RecipeNotFoundException.java
+C:\Work\cookingApp\cookingAppBackend\src\main\java\mendix\cookingapp\services\RecipeServiceImpl.java

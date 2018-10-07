@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS RECIPE(
+  name VARCHAR(128) NOT NULL,
+  description VARCHAR(128),
+  ingredients VARCHAR(1000) NOT NULL,
+  categories VARCHAR(1000) NOT NULL,
+  PRIMARY KEY (name)
+);

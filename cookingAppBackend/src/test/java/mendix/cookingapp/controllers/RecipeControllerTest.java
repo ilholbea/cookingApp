@@ -3,7 +3,6 @@ package mendix.cookingapp.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import mendix.cookingapp.entities.RecipeDTO;
 import mendix.cookingapp.services.RecipeService;
-import mendix.cookingapp.utils.Utils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,7 @@ public class RecipeControllerTest {
     @Test
     public void getAllRecipes() throws Exception {
 
-        given(recipeServiceMock.getAllRecipes()).willReturn(Arrays.asList(new RecipeDTO("Recipe1", "Description1", Utils.createList("ingredient"), Utils.createList("category"))));
+        given(recipeServiceMock.getAllRecipes()).willReturn(Arrays.asList(new RecipeDTO("Recipe1", "Description1", "ingredient", "category")));
 
         mvc.perform(get("/api/recipes")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -55,7 +54,7 @@ public class RecipeControllerTest {
 
     @Test
     public void getRecipeByName() throws Exception {
-        given(recipeServiceMock.getRecipeByName("Recipe1")).willReturn(new RecipeDTO("Recipe1", "Description1", Utils.createList("ingredient"), Utils.createList("category")));
+        given(recipeServiceMock.getRecipeByName("Recipe1")).willReturn(new RecipeDTO("Recipe1", "Description1", "ingredient", "category"));
         mvc.perform(get("/api/recipes/Recipe1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -65,7 +64,7 @@ public class RecipeControllerTest {
 
     @Test
     public void addRecipe() throws Exception {
-        RecipeDTO newRecipe = new RecipeDTO("Recipe1", "Description1", Utils.createList("ingredient"), Utils.createList("category"));
+        RecipeDTO newRecipe = new RecipeDTO("Recipe1", "Description1", "ingredient", "category");
         given(recipeServiceMock.addRecipe(newRecipe)).willReturn(true);
         mvc.perform(post("/api/recipes/")
                 .content(objectMapper.writeValueAsBytes(newRecipe))
@@ -75,7 +74,7 @@ public class RecipeControllerTest {
 
     @Test
     public void updateRecipe() throws Exception {
-        RecipeDTO updatedRecipe = new RecipeDTO("Recipe1", "Description1", Utils.createList("ingredient"), Utils.createList("category"));
+        RecipeDTO updatedRecipe = new RecipeDTO("Recipe1", "Description1", "ingredient", "category");
         given(recipeServiceMock.updateRecipe(updatedRecipe)).willReturn(true);
         mvc.perform(put("/api/recipes/")
                 .content(objectMapper.writeValueAsBytes(updatedRecipe))

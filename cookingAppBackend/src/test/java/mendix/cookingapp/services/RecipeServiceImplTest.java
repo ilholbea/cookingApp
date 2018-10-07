@@ -3,7 +3,6 @@ package mendix.cookingapp.services;
 import mendix.cookingapp.entities.RecipeDAO;
 import mendix.cookingapp.entities.RecipeDTO;
 import mendix.cookingapp.repositories.RecipeRepository;
-import mendix.cookingapp.utils.Utils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +34,7 @@ public class RecipeServiceImplTest {
 
     @Test
     public void getAllRecipes() {
-        RecipeDTO expectedRecipe = new RecipeDTO("Recipe", "Description", Utils.createList("ingredient"), Utils.createList("category"));
+        RecipeDTO expectedRecipe = new RecipeDTO("Recipe", "Description", "ingredient", "category");
         Mockito.when(recipeRepositoryMock.findAll())
                 .thenReturn(Arrays.asList(new RecipeDAO("Recipe", "Description", "Ingredients", "Categories")));
         List<RecipeDTO> recipeList = recipeService.getAllRecipes();
@@ -47,7 +46,7 @@ public class RecipeServiceImplTest {
 
     @Test
     public void getRecipeByName() {
-        RecipeDTO expectedRecipe = new RecipeDTO("Recipe", "Description", Utils.createList("ingredient"), Utils.createList("category"));
+        RecipeDTO expectedRecipe = new RecipeDTO("Recipe", "Description", "ingredient", "category");
         Mockito.when(recipeRepositoryMock.findRecipeContainingName("Recipe"))
                 .thenReturn(new RecipeDAO("Recipe", "Description", "Ingredients", "Categories"));
         RecipeDTO foundRecipe = recipeService.getRecipeByName("Recipe");
@@ -57,7 +56,7 @@ public class RecipeServiceImplTest {
 
     @Test
     public void addRecipe() {
-        RecipeDTO newRecipe = new RecipeDTO("Recipe", "Description", Utils.createList("ingredient"), Utils.createList("category"));
+        RecipeDTO newRecipe = new RecipeDTO("Recipe", "Description", "ingredient", "category");
         Mockito.when(recipeRepositoryMock.saveAndFlush(new RecipeDAO(newRecipe)))
                 .thenReturn(new RecipeDAO(newRecipe));
         Assert.assertTrue(recipeService.addRecipe(newRecipe));
@@ -66,7 +65,7 @@ public class RecipeServiceImplTest {
 
     @Test
     public void updateRecipe() {
-        RecipeDTO updatedRecipe = new RecipeDTO("Recipe", "Description", Utils.createList("ingredient"), Utils.createList("category"));
+        RecipeDTO updatedRecipe = new RecipeDTO("Recipe", "Description", "ingredient", "category");
         Mockito.when(recipeRepositoryMock.saveAndFlush(new RecipeDAO(updatedRecipe)))
                 .thenReturn(new RecipeDAO(updatedRecipe));
         Assert.assertTrue(recipeService.addRecipe(updatedRecipe));

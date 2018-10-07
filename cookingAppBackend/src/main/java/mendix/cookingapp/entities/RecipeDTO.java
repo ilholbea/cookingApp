@@ -1,23 +1,19 @@
 package mendix.cookingapp.entities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class RecipeDTO {
 
     private String name;
 
     private String description;
 
-    private List<String> ingredients;
+    private String ingredients;
 
-    private List<String> categories;
+    private String categories;
 
     public RecipeDTO() {
     }
 
-    public RecipeDTO(String name, String description, List<String> ingredients, List<String> categories) {
+    public RecipeDTO(String name, String description, String ingredients, String categories) {
         this.name = name;
         this.description = description;
         this.ingredients = ingredients;
@@ -27,23 +23,23 @@ public class RecipeDTO {
     public RecipeDTO(RecipeDAO recipeDAO) {
         this.name = recipeDAO.getName();
         this.description = recipeDAO.getDescription();
-        this.ingredients = new ArrayList<>(Arrays.asList(recipeDAO.getIngredients()));
-        this.categories = new ArrayList<>(Arrays.asList(recipeDAO.getCategories()));
+        this.ingredients = recipeDAO.getIngredients();
+        this.categories = recipeDAO.getCategories();
     }
 
-    public List<String> getCategories() {
+    public String getCategories() {
         return categories;
     }
 
-    public void setCategories(List<String> categories) {
+    public void setCategories(String categories) {
         this.categories = categories;
     }
 
-    public List<String> getIngredients() {
+    public String getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<String> ingredients) {
+    public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
     }
 

@@ -1,0 +1,57 @@
+/*C2*/SET SCHEMA PUBLIC
+DELETE FROM "mendixsystem$version" WHERE "versionnumber"='4.2'
+INSERT INTO "mendixsystem$version" VALUES('4.2','2018-10-07 00:33:15.737000','3.0.0','unversioned','cookingAppFrontend')
+COMMIT
+/*C3*/SET SCHEMA PUBLIC
+INSERT INTO "mendixsystem$entityidentifier" VALUES('8c3032bf-9418-4dec-b248-89904ff82250',30,1)
+COMMIT
+INSERT INTO "mendixsystem$entityidentifier" VALUES('d1d3b4ea-2eb3-4e6c-a513-e56e7551ce83',31,1)
+COMMIT
+DELETE FROM "system$userrole" WHERE "id"=4222124650659841
+INSERT INTO "system$userrole" VALUES(4222124650659841,'8dd52bfa-6d7e-453b-b506-303c0a3d9567','','Administrator')
+DELETE FROM "system$userrole" WHERE "id"=4222124650659842
+INSERT INTO "system$userrole" VALUES(4222124650659842,'53f5d6fa-6da9-4a71-b011-454ec052cce8','','User')
+COMMIT
+DELETE FROM "mendixsystem$properties" WHERE "key"='Mendix.Runtime.DeploymentID'
+INSERT INTO "mendixsystem$properties" VALUES('Mendix.Runtime.DeploymentID','636745240153531996')
+COMMIT
+DELETE FROM "system$session" WHERE "id"=4503599627370897
+DELETE FROM "system$session_user" WHERE "system$sessionid"=4503599627370897 AND "system$userid"=562949953421713
+COMMIT
+/*C2*/DELETE FROM "mendixsystem$entityidentifier" WHERE "id"='d4154981-8dac-4150-aec5-efa3ef62a7a2'
+INSERT INTO "mendixsystem$entityidentifier" VALUES('d4154981-8dac-4150-aec5-efa3ef62a7a2',4,601)
+COMMIT
+/*C3*/INSERT INTO "system$xasinstance" VALUES(1125899906843125,'100895a2-ad35-4e5e-972e-ba09f3837739','2018-10-07 12:47:05.417000','2018-10-07 12:47:05.383000',NULL,NULL,NULL)
+COMMIT
+DELETE FROM "mendixsystem$entityidentifier" WHERE "id"='282e2e60-88a5-469d-84a5-ba8d9151644f'
+INSERT INTO "mendixsystem$entityidentifier" VALUES('282e2e60-88a5-469d-84a5-ba8d9151644f',2,601)
+COMMIT
+INSERT INTO "system$user" VALUES(562949953421813,'2018-10-07 12:47:35.959000',TRUE,'2018-10-07 12:47:35.959000','2018-10-07 12:47:36.058000',FALSE,TRUE,0,FALSE,'Anonymous_ad7638b4-e11a-4ba9-aedc-e76d793e9bec','{BCrypt}$2a$10$mgapDAm7R/7YmuaNXctvMO5nY9Wlr3jdfrG8Ci3goe3Diz62/Wlt2','System.User',NULL,562949953421813)
+INSERT INTO "system$userroles" VALUES(562949953421813,4222124650659841)
+INSERT INTO "system$user_language" VALUES(562949953421813,5910974510923777)
+COMMIT
+DELETE FROM "system$user" WHERE "id"=562949953421813
+INSERT INTO "system$user" VALUES(562949953421813,'2018-10-07 12:47:35.959000',TRUE,'2018-10-07 12:47:35.959000','2018-10-07 12:47:36.096000',FALSE,TRUE,0,FALSE,'Anonymous_ad7638b4-e11a-4ba9-aedc-e76d793e9bec','{BCrypt}$2a$10$mgapDAm7R/7YmuaNXctvMO5nY9Wlr3jdfrG8Ci3goe3Diz62/Wlt2','System.User',NULL,562949953421813)
+COMMIT
+/*C4*/SET SCHEMA PUBLIC
+DELETE FROM "mendixsystem$entityidentifier" WHERE "id"='37f9fd49-5318-4c63-9a51-f761779b202f'
+INSERT INTO "mendixsystem$entityidentifier" VALUES('37f9fd49-5318-4c63-9a51-f761779b202f',16,601)
+COMMIT
+INSERT INTO "system$session" VALUES(4503599627370997,'25022ab1-6f12-4384-a640-bd9dea717719','2018-10-07 12:47:36.132000','d905489e-c044-4b48-98df-dd4886892fb3','2018-10-07 12:47:36.133000','e2c7c1b2-9e14-4d14-970b-8781fe3c8c75')
+INSERT INTO "system$session_user" VALUES(4503599627370997,562949953421813)
+COMMIT
+/*C2*/DELETE FROM "mendixsystem$entityidentifier" WHERE "id"='3d460fe3-2308-474b-8d3a-931ac838776f'
+INSERT INTO "mendixsystem$entityidentifier" VALUES('3d460fe3-2308-474b-8d3a-931ac838776f',12,401)
+COMMIT
+DELETE FROM "mendixsystem$entityidentifier" WHERE "id"='8eae269c-cd9b-465c-b947-7d36086ec3c1'
+INSERT INTO "mendixsystem$entityidentifier" VALUES('8eae269c-cd9b-465c-b947-7d36086ec3c1',22,401)
+COMMIT
+DELETE FROM "mendixsystem$entityidentifier" WHERE "id"='8c3032bf-9418-4dec-b248-89904ff82250'
+INSERT INTO "mendixsystem$entityidentifier" VALUES('8c3032bf-9418-4dec-b248-89904ff82250',30,101)
+COMMIT
+DELETE FROM "mendixsystem$entityidentifier" WHERE "id"='d1d3b4ea-2eb3-4e6c-a513-e56e7551ce83'
+INSERT INTO "mendixsystem$entityidentifier" VALUES('d1d3b4ea-2eb3-4e6c-a513-e56e7551ce83',31,101)
+COMMIT
+/*C3*/DELETE FROM "system$session" WHERE "id"=4503599627370997
+INSERT INTO "system$session" VALUES(4503599627370997,'25022ab1-6f12-4384-a640-bd9dea717719','2018-10-07 12:47:36.132000','d905489e-c044-4b48-98df-dd4886892fb3','2018-10-07 12:47:49.749000','e2c7c1b2-9e14-4d14-970b-8781fe3c8c75')
+COMMIT
