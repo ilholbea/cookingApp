@@ -1,1 +1,1 @@
-java -jar target/cookingapp-0.0.1-SNAPSHOT.jar --spring-config=src/main/resources/application.properties
+java -jar cookingapp-0.0.1-SNAPSHOT.jar --spring-config=application.properties
