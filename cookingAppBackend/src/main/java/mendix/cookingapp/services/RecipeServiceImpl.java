@@ -35,7 +35,7 @@ public class RecipeServiceImpl implements RecipeService {
 
 
     public List<RecipeDTO> getAllRecipesByCategory(String category) {
-        List<RecipeDAO> dbRecipeList = recipeRepository.findRecipeByCategory(category);
+        List<RecipeDAO> dbRecipeList = recipeRepository.findRecipeByCategory(category.toLowerCase());
         List<RecipeDTO> recipeList = new ArrayList<>();
 
         if (dbRecipeList == null || dbRecipeList.isEmpty()) {
@@ -56,6 +56,8 @@ public class RecipeServiceImpl implements RecipeService {
 
     public boolean addRecipe(RecipeDTO newRecipe) {
         if (recipeRepository.findRecipeByName(newRecipe.getName()) == null) {
+            RecipeDAO newRecipeDAO = new RecipeDAO(newRecipe);
+            newRecipe.setCategories(newRecipe.getCategories().toLowerCase());
             recipeRepository.saveAndFlush(new RecipeDAO(newRecipe));
             return true;
         } else throw new RecipeNotFoundException("Recipe already exists.");
@@ -66,13 +68,14 @@ public class RecipeServiceImpl implements RecipeService {
         if (dbRecipe != null) {
             BeanUtils.copyProperties(new RecipeDAO(updateRecipe), dbRecipe);
             dbRecipe.setName(updateRecipe.getName());
-            recipeRepository.saveAndFlush(new RecipeDAO(updateRecipe));
+            dbRecipe.setCategories(updateRecipe.getCategories().toLowerCase());
+            recipeRepository.saveAndFlush(dbRecipe);
             return true;
         } else throw new RecipeNotFoundException(NOT_FOUND_MESSAGE);
     }
 
     public boolean deleteRecipe(String recipeName) {
-        RecipeDAO dbRecipe = recipeRepository.findRecipeByName(recipeName);
+        RecipeDAO dbRecipe = recipeRepository.findRecipeByName(recipeName.replaceAll("_"," "));
         if (dbRecipe != null) {
             recipeRepository.delete(dbRecipe);
             return true;
