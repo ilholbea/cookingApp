@@ -67,21 +67,13 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-	public static java.util.List<myfirstmodule.proxies.Recipe> getRecipeByCategory(IContext context, myfirstmodule.proxies.Recipe _recipe)
+	public static void getRecipeByCategory(IContext context, myfirstmodule.proxies.Recipe _recipe)
 	{
 		try
 		{
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
 			params.put("Recipe", _recipe == null ? null : _recipe.getMendixObject());
-			java.util.List<IMendixObject> objs = Core.execute(context, "MyFirstModule.GetRecipeByCategory", params);
-			java.util.List<myfirstmodule.proxies.Recipe> result = null;
-			if (objs != null)
-			{
-				result = new java.util.ArrayList<myfirstmodule.proxies.Recipe>();
-				for (IMendixObject obj : objs)
-					result.add(myfirstmodule.proxies.Recipe.initialize(context, obj));
-			}
-			return result;
+			Core.execute(context, "MyFirstModule.GetRecipeByCategory", params);
 		}
 		catch (CoreException e)
 		{
@@ -95,6 +87,20 @@ public class Microflows
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
 			params.put("Recipe", _recipe == null ? null : _recipe.getMendixObject());
 			IMendixObject result = (IMendixObject)Core.execute(context, "MyFirstModule.GetRecipeByName", params);
+			return result == null ? null : myfirstmodule.proxies.Recipe.initialize(context, result);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static myfirstmodule.proxies.Recipe getRecipeByNameNonEditable(IContext context, myfirstmodule.proxies.Recipe _recipe)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			params.put("Recipe", _recipe == null ? null : _recipe.getMendixObject());
+			IMendixObject result = (IMendixObject)Core.execute(context, "MyFirstModule.GetRecipeByNameNonEditable", params);
 			return result == null ? null : myfirstmodule.proxies.Recipe.initialize(context, result);
 		}
 		catch (CoreException e)

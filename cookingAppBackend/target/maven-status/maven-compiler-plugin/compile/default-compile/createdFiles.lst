@@ -1,8 +1,0 @@
-mendix\cookingapp\services\RecipeService.class
-mendix\cookingapp\entities\RecipeDAO.class
-mendix\cookingapp\repositories\RecipeRepository.class
-mendix\cookingapp\CookingappApplication.class
-mendix\cookingapp\entities\RecipeDTO.class
-mendix\cookingapp\services\RecipeServiceImpl.class
-mendix\cookingapp\exceptions\RecipeNotFoundException.class
-mendix\cookingapp\controllers\RecipeController.class

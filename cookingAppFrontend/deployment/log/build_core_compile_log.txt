@@ -1,7 +1,7 @@
 ﻿Buildfile: C:\Work\cookingApp\cookingAppFrontend\deployment\build_core.xml
 
 compile:
-    [javac] Compiling 1 source file to C:\Work\cookingApp\cookingAppFrontend\deployment\run\bin
+    [javac] Compiling 2 source files to C:\Work\cookingApp\cookingAppFrontend\deployment\run\bin
 
 build:
       [bnd] # addAll 'deployment/run/bnd.bnd' with ,
