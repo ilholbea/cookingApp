@@ -129,8 +129,11 @@ and switch between the users to see how each page changes.
 
 
 
+PS:
+A visible API Documentation can be found at: 
+https://documenter.getpostman.com/view/5293766/RWgp2KgW#ddc12663-cc71-4223-b7aa-c0721127a8f0 
 
-
+I've generated it using POSTMAN. 
 
 
 
