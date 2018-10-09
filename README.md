@@ -5,17 +5,18 @@
 
 
 ##Overall application architecture
-The application has two parts. 
+The application has multiple parts: 
 1. `BACKEND` - developed using `Java` and `Spring Boot`
 2. `FRONTEND` - developed using `Mendix Desktop Modeler`
 3. `PERSISTANCY` - the database that I've used is a `PostgreSQL` database hosted on cloud using `AWS RDS`.
-I first started the development with a `H2` in-memory database, but I wanted to add a bit more functionality to the app.
+I first started the development with a `H2` in-memory database, but I wanted to add a bit more functionality to the app,
+so I switched to a cloud DB.
 
 ###Folder Structure
 The `BACKEND` of the application resides in the `cookingAppBackend` folder. 
 It contains the src folder with the application and three `.bat` files that are explained in the `How to Run` section.
 
-The `FRONTEND` of the application resides in the `cookingAppFrontend` folder. Given the fac that I didn't find the 
+The `FRONTEND` of the application resides in the `cookingAppFrontend` folder. Given the fact that I didn't find the 
 `Export Package` functionality of the Modeler until later in the development, I've added the entire working directory
 of the `FRONTEND`. 
 
@@ -35,7 +36,7 @@ Starting the `BACKEND` is easy, simply execute the run.bat script file. This cal
 `application.properties` to connect to the database.
 
 In order to start the `FRONTEND` you have to import the `.mpk` in the Mendix Modeler and simply `Run Locally`. After
-the building is complete you can click the `View in browser` to open the `FRONTEND`.
+the building is complete you can click the `View`(at the top of the application) to open the `FRONTEND`.
 
 
 ##How to Build
@@ -62,6 +63,7 @@ that recipe.
 - at the top of the `Homepage` there are two buttons, `Create Recipe` and `Search`
     * For the `Chef`, both buttons will be available
     * For the `User`, only the `Search` button will be available
+- default number of shown elements is five, to load more, click on the `Load More` button at the bottom of the page.
      
 2. `Create Recipe`
 - it's a page that helps the `Chef` to add new recipes. It contains fields for every entity of the recipe.
@@ -112,6 +114,11 @@ When a recipe was not found I threw a `RecipeNotFoundException` with a specific 
 
 In the `test` folder of the `BACKEND` you can find the tests for `Controllers`, `Services` and `Repositories`. You can run them
 either using the `mvn test`, provided you have the Maven installed, or using the `test.bat` script that I've provided.
+
+The steps, ingredients and categories are stored not as list of strings, but as simple strings. Why I've decided to use them like these?
+Because let's assume that the `CHEF` want to create a recipe really fast, copying some information from the internet. With the list, he would
+have to click an `Add Ingredient/Step` for each new line of the recipe. With the elements stores as strings, he can simply copy-paste the recipe
+and format it as he wants.
 
 ######FRONTEND
 The `FRONTEND` was developed using the `Mendix Desktop Modeler`. I've created the needed pages.
